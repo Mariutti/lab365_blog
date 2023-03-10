@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #394567;
+}
+
+header, main, footer {
+    /* border: 1px solid red; */
+    width: 60vw;
+    min-width: 700px;
+    margin: 0 auto;
+    background-color: white;
+}
+
+header {
+    height: 5rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+main {
+    /* background-color: #2b3a67; */
+    padding: 1rem;
+}
+
+.postDiv{
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    padding: 1rem 1.5rem;
+    box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.384);
+
+}
