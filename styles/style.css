@@ -2,11 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.4rem;
 }
 body{
     background-color: #394567;
 }
-
 header, main, footer {
     /* border: 1px solid red; */
     width: 60vw;
@@ -19,6 +20,7 @@ header {
     height: 5rem;
     padding: 2rem;
     text-align: center;
+    background-color: #ece2d0;
 }
 
 main {
@@ -31,5 +33,21 @@ main {
     border-radius: 1rem;
     padding: 1rem 1.5rem;
     box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.384);
-
+    
+}
+h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid black;
+    width: fit-content;
+}
+.postDiv p {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    margin-bottom: 1rem;
 }

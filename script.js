@@ -5,7 +5,9 @@ const url = 'https://jsonplaceholder.typicode.com/posts?_page=1&_limit=20'
 
 async function getAllPosts() {
   const posts = await fetch(url)
-  .then((res) => res.json());  return posts
+  .then((res) => res.json());  
+  console.log(posts)
+  return posts
  
 }
 
@@ -26,7 +28,7 @@ async function criarDivPostagens() {
     <div class="post-body">
       <p>${post.body}</p>
     </div>
-    <div class="user-id"> Usuário ${post.userId}</div>`
+    <div class="user-id"><p>Usuário ${post.userId}</p></div>`
     
 
     postsDiv.appendChild(div)
