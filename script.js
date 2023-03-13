@@ -8,8 +8,8 @@ const btnGetPosts = document.querySelector("#getPosts");
 
 const getAllPosts = async function getAllPosts(url) {
   const posts = await fetch(url).then((res) => res.json());
-  // console.log(posts);
-  // console.log(posts.length);
+  console.log(posts);
+  console.log(posts.length);
   return posts;
 };
 
@@ -30,30 +30,31 @@ async function criarDivPostagens(postPage, postsNumber) {
     <div class="post-body">
     <p>${post.body}</p>
     </div>`;
+    // <div class="user-id"><p>Usuário ${post.userId}</p></div>
 
     postsDiv.appendChild(div);
-    div.addEventListener("click", openModal);
+    div.addEventListener("click", someFunction);
   });
-
-  // Open Modal
-  function openModal(e) {
+  closerModal.addEventListener("click", closeModal);
+  function someFunction(e) {
     function changeModal() {
       modal.style.display = "block";
     }
+    // e.stopPropagation();
     let target = e.target;
 
     if (target.className != "postDiv") {
       target = target.closest(".postDiv");
+      console.log(target);
       changeModal();
       return target;
     }
     changeModal();
+    console.log(target);
     return target;
   }
-
-  //Close Modal
-  closerModal.addEventListener("click", closeModal);
   function closeModal(e) {
+    console.log(e.target);
     modal.style.display = "none";
   }
 }
@@ -76,23 +77,3 @@ async function getMorePosts() {
     postsDiv.appendChild(p);
   }
 }
-
-function getComments(postId) {
-  return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`);
-}
-
-async function doCommentsList() {
-  const
-}
-
-// Crie uma variável para armazenar o post mais recente clicado (cou chamar de currentPost para poder fazer referência);
-
-// Crie uma função que receba como parâmetro um id de post e faça uma consulta ao endpoint de comentários usando este id. O endpoint é: https://jsonplaceholder.typicode.com/posts/${postId}/comments;
-
-// Retorne os comentários;
-
-// Teste a função de busca de comentários;
-
-// Crie uma função que receba como parâmetro id, body e title (de um post) e a partir disso carregue os posts usando a função do tópico 2, além disso, defina o calor da variável currentPost para os valores recebidos como parâmetro id, body, title e comments que foi carregado agora;
-
-// Continuidade
