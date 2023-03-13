@@ -1,0 +1,36 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow:auto;
+    background-color: rgba(0,0,0,0.4);
+    backdrop-filter: blur(2px);
+    
+}
+
+.modal .modalContent {
+    background-color: white;
+    margin: 15% auto;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    width: 70%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.closer {
+    align-self: flex-end;
+}
+
+.closer:hover {
+    cursor: pointer;
+    color: red;
+    transition: ease-in-out;
+    transform: rotate(90deg);
+} 

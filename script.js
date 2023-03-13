@@ -16,6 +16,9 @@ const getAllPosts = async function getAllPosts(url) {
 async function criarDivPostagens(postPage, postsNumber) {
   const url = `https://jsonplaceholder.typicode.com/posts?_page=${postPage}&_limit=${postsNumber}`;
   const criarDivComFetch = await getAllPosts(url);
+  const modal = document.querySelector('.modal')
+  const closerModal = document.querySelector('.closer')
+
   criarDivComFetch.forEach((post) => {
     const div = document.createElement("div");
     div.id = post.id;
@@ -30,7 +33,32 @@ async function criarDivPostagens(postPage, postsNumber) {
     // <div class="user-id"><p>Usuário ${post.userId}</p></div>
 
     postsDiv.appendChild(div);
+    div.addEventListener("click", someFunction)
+    
+    
+    function someFunction(e){
+      function changeModal(){
+        modal.style.display = 'block'
+      }
+      // e.stopPropagation();
+      let target = e.target;
+
+      if (target.className != "postDiv"){
+        target = target.closest('.postDiv');
+        console.log(target)
+        changeModal()
+        return target
+      }  
+      changeModal()
+      console.log(target)
+        return target
+    };
   });
+  closerModal.addEventListener('click', closeModal)
+  function closeModal(e){
+    console.log(e.target)
+    modal.style.display = 'none'
+  }
 }
 
 criarDivPostagens(postPage, postsNumber);
@@ -44,10 +72,10 @@ async function getMorePosts() {
 
   const postsDivCounter = document.querySelectorAll(".postDiv");
 
-  if(postsDivCounter.length < postNumberCounter){
-    btnGetPosts.style.display = 'none'
-    const p = document.createElement('p')
-    p.innerText = 'Não há mais postagens para carregar!'
-    postsDiv.appendChild(p)
+  if (postsDivCounter.length < postNumberCounter) {
+    btnGetPosts.style.display = "none";
+    const p = document.createElement("p");
+    p.innerText = "Não há mais postagens para carregar!";
+    postsDiv.appendChild(p);
   }
 }
