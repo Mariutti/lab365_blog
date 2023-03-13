@@ -81,7 +81,9 @@ function getComments(postId) {
   return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`);
 }
 
-async function doCommentsList() {}
+async function doCommentsList() {
+  const
+}
 
 // Crie uma variável para armazenar o post mais recente clicado (cou chamar de currentPost para poder fazer referência);
 
