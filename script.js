@@ -3,13 +3,12 @@ const postPage = 1;
 const postsNumber = 20;
 let postPageCounter = postPage;
 let postNumberCounter = postsNumber;
+const divMessage = document.querySelector(".divMessage");
 
 const btnGetPosts = document.querySelector("#getPosts");
 
 const getAllPosts = async function getAllPosts(url) {
   const posts = await fetch(url).then((res) => res.json());
-  console.log(posts);
-  console.log(posts.length);
   return posts;
 };
 
@@ -33,28 +32,51 @@ async function criarDivPostagens(postPage, postsNumber) {
     // <div class="user-id"><p>Usuário ${post.userId}</p></div>
 
     postsDiv.appendChild(div);
-    div.addEventListener("click", someFunction);
-  });
-  closerModal.addEventListener("click", closeModal);
-  function someFunction(e) {
-    function changeModal() {
-      modal.style.display = "block";
-    }
-    // e.stopPropagation();
-    let target = e.target;
 
-    if (target.className != "postDiv") {
-      target = target.closest(".postDiv");
-      console.log(target);
+    div.addEventListener("click", openModal);
+
+    function openModal(e) {
+      function changeModal() {
+        modal.style.display = "block";
+      }
+      // e.stopPropagation();
+      let target = e.target;
+
+      if (target.className != "postDiv") {
+        target = target.closest(".postDiv");
+        // console.log(target);
+        changeModal();
+        postComments(post.id);
+        return target;
+      }
+
+      closerModal.addEventListener("click", closeModal);
+
       changeModal();
+      // console.log(target);
       return target;
     }
-    changeModal();
-    console.log(target);
-    return target;
+  });
+  function getComments(postId) {
+    return fetch(
+      `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
+    );
   }
+  async function postComments(postId) {
+    const messages = await getComments(postId).then((res) => res.json());
+    messages.forEach((message) => {
+      const divPostagem = document.createElement("div");
+      divPostagem.className = "postDiv";
+
+      divPostagem.innerHTML += ` <h2 class="name">Nome: ${message.name}</h2>
+      <p class="message">Message: ${message.body}</p>
+      <p class="e-mail">e-mail: ${message.email}</p>
+      `;
+      divMessage.appendChild(divPostagem);
+    });
+  }
+
   function closeModal(e) {
-    console.log(e.target);
     modal.style.display = "none";
   }
 }
